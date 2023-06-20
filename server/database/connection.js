@@ -11,7 +11,7 @@ const URI = process.env.ATLAS_URI;
 const connection = async() => {
     try {
         await mongoose.connect(URI, {
-            // newUrlParser: true, it's alreadt deprecated
+            // newUrlParser: true, it's already deprecated
             useUnifiedTopology: true
         
         });
