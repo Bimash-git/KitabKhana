@@ -4,8 +4,8 @@ import Home from './routes/Home';
 import About from './routes/About';
 import Contact from './routes/Contact';
 import Navbar from './components/Navbar';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
+import Login from './routes/Login';
+import SignUp from './routes/SignUp';
 
 function App() {
   return (
