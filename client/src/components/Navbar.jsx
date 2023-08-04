@@ -10,6 +10,7 @@ export default function Navbar() {
       </Link>
       <Search />
       <ul>
+        <CustomLink to="/bookform">Add Books</CustomLink>
         <CustomLink to="/about">About Us</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
         <CustomLink to="/signup">SignUp</CustomLink>

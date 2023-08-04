@@ -4,13 +4,24 @@ const connection = require('./database/connection');
 const cors = require("cors");
 const cookieParser = require('cookie-parser');
 const authRoute = require("./Routes/AuthRoute");
+const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
+const path = require("path")
+// const multer = require('multer');
+// const upload = multer({ dest: 'uploads/' });
+
 dotenv.config();
 
 // const mongoose = require('mongoose');
 // const User = require('./database/models/user.model');
-
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+// app.use(
+//     fileUpload({
+//       limits: { fileSize: 10 * 1024 * 1024 },
+//     })
+//   );
 app.use(cookieParser());
 
 app.use(cors({

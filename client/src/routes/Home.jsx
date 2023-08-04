@@ -5,6 +5,8 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+// import Books from "../components/bookForm";
+
 export default function Home() {
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
@@ -12,13 +14,14 @@ export default function Home() {
 
   useEffect(() => {
 
-    const verifyCookie = async() => {
-      if(!cookies.token) {
+    const verifyCookie = async () => {
+
+      if (!cookies.token) {
         navigate("/login");
       }
- 
+
       const { data } = await axios.post(
-        "http://localhost:4001", 
+        "http://localhost:4001",
         {},
         { withCredentials: true }
       );
@@ -31,9 +34,11 @@ export default function Home() {
           position: "top-right"
         })
         : (removeCookie("token"), navigate("/login"));
+
     };
+
     verifyCookie();
-  }, [cookies, removeCookie ]);
+  }, [cookies, removeCookie, navigate]);
 
   const Logout = () => {
     removeCookie("token");
@@ -42,14 +47,33 @@ export default function Home() {
 
   return (
     <>
-    <div className='home_page'>
-      <h4>
-        {" "}
-        Welcome <span>{username}</span>
-      </h4>
-      <button onClick={Logout}>Logout</button>
-    </div>
-    <ToastContainer />
+      <div className='home_page'>
+        <h4>
+          {" "}
+          Welcome <span>{username}</span>
+        </h4>
+        <button onClick={Logout}>Logout</button>
+        {/* {books.map((book) => (
+          <Card key={book.id} style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={book.image} />
+            <Card.Body>
+              <Card.Title>{book.title}</Card.Title>
+              <Card.Text>{book.description}</Card.Text>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              <ListGroup.Item>Author: {book.author}</ListGroup.Item>
+              <ListGroup.Item>Genre: {book.genre}</ListGroup.Item>
+              <ListGroup.Item>Price: {book.price}</ListGroup.Item>
+            </ListGroup>
+            <Card.Body>
+              <Card.Link href="#">Card Link</Card.Link>
+              <Card.Link href="#">Another Link</Card.Link>
+            </Card.Body>
+          </Card>
+        ))} */}
+        <ToastContainer />
+      </div>
+
     </>
   )
 }

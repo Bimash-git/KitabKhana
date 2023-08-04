@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -46,12 +47,14 @@ export default function Login() {
       );
 
       console.log(data);
+      
       const { success, message } = data;
       if(success) {
+        
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/")
-        }, 2000);
+          navigate("/");
+        }, 1000);
       }
       else {
         handleError(message);

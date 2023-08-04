@@ -1,4 +1,5 @@
 const User = require("../database/models/user.model");
+const Book = require("../database/models/book.model");
 const { createSecretToken } = require("../database/secretToken");
 const bcrypt = require("bcryptjs");
 
@@ -41,9 +42,73 @@ module.exports.Login = async(req, res, next) => {
             withCredentials: true,
             httpOnly: false
         });
-        res.status(201).json({ message: "User logged in successfully"});
+        res.status(201).json({ message: "User logged in successfully", success: true});
+        next();
     }
     catch(error) {
         console.error(error);
     }
 }
+module.exports.uploadImage = async(req,res,next)=>{
+    console.log("uploadImage");
+
+    try {
+        res.status(200).send(req.file);
+            console.log(req.file);
+
+      } catch (err) {
+        res.status(500).send({
+          message: err.message,
+        });
+      }
+}
+
+   
+  module.exports.getUploadForm = (req, res) => {
+    res.status(200).send("uploadForm");
+  };
+  
+module.exports.BookForm = async(req, res, next) => {
+    // const {data} = req.body;
+    // console.log(data);
+    console.log(req.body);
+    const {data} =req.body;
+    const bookData = JSON.parse(data);
+    console.log(bookData); 
+
+    try {
+        const books = await Book.create(bookData);
+
+        return res.status(201).json({ 
+            success: true, message: "Books uploaded successfully",  });
+    }
+    catch(error) {
+        console.error(error);
+
+        return res.status(400).json({
+            success:false,
+            message:"Unable to upload books inforamtion"
+        })
+    }
+}
+
+module.exports.Card = async(req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const data = await Book.findById(id);
+
+        if(!data) {
+            return res.status(404).json({ error: "Data not found on the database"});
+        }
+
+        return res.json(data);
+    
+    }
+    catch(error) {
+        console.error("Error fetching data: "+ error);
+        return res.status(500).json({ error: "Internal server error"});
+    }
+}
+
+// module.exports.  
