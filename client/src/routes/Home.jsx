@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import Box from "../components/Box";
 import { ToastContainer, toast } from "react-toastify";
 
 // import Books from "../components/bookForm";
@@ -53,6 +54,7 @@ export default function Home() {
           Welcome <span>{username}</span>
         </h4>
         <button onClick={Logout}>Logout</button>
+        <Box />
         {/* {books.map((book) => (
           <Card key={book.id} style={{ width: '18rem' }}>
             <Card.Img variant="top" src={book.image} />

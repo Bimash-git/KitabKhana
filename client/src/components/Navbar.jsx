@@ -11,7 +11,7 @@ export default function Navbar() {
       <Search />
       <ul>
         <CustomLink to="/bookform">Add Books</CustomLink>
-        <CustomLink to="/about">About Us</CustomLink>
+        <CustomLink to="/recommendations">Recommend</CustomLink>
         <CustomLink to="/login">Login</CustomLink>
         <CustomLink to="/signup">SignUp</CustomLink>
         <CustomLink to="/contact">Contact Us</CustomLink>

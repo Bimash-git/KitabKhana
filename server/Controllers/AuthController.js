@@ -2,6 +2,7 @@ const User = require("../database/models/user.model");
 const Book = require("../database/models/book.model");
 const { createSecretToken } = require("../database/secretToken");
 const bcrypt = require("bcryptjs");
+const recommendations = require("../Recommendation");
 
 module.exports.Signup = async(req, res, next) => {
     try {
@@ -92,14 +93,15 @@ module.exports.BookForm = async(req, res, next) => {
     }
 }
 
-module.exports.Card = async(req, res, next) => {
+module.exports.Box = async(req, res, next) => {
     try {
         const { id } = req.params;
+        console.log(id);
 
         const data = await Book.findById(id);
 
         if(!data) {
-            return res.status(404).json({ error: "Data not found on the database"});
+            return res.status(404).json({ error: "Data isn't found on the database"});
         }
 
         return res.json(data);
@@ -111,4 +113,8 @@ module.exports.Card = async(req, res, next) => {
     }
 }
 
-// module.exports.  
+module.exports.Recommendations = async (req, res, next) => {
+    const userInput = req.query.input;
+    const books = await recommendations.getRecommendations(userInput);
+    return res.json(books);
+}  
