@@ -76,7 +76,8 @@ function BookForm() {
 
         setErrors("Error to upload image");
         }
-      };
+    };
+
     const handleError = (err) => {
         toast.success(err, {
             position: "bottom-right"

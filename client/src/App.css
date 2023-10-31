@@ -74,3 +74,59 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.displaying-card {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.card-container {
+  border-radius: 9px;
+  background-color: white;
+  max-width: 400px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  box-shadow: none;
+  text-decoration: none;
+  color: black;
+}
+
+.card-article figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.card-article img {
+  max-width: 100%;
+  transform-origin: center;
+  transition: transform 0.4s ease-in-out;
+}
+
+.card-article img:hover,
+.card-article img:focus {
+  transform: scale(1.1);
+}
+
+.card-body {
+  padding: 24px;
+}
+.card-body h2 {
+  margin: 0 0 18px 0;
+  letter-spacing: 0.006em;
+  font-size: 1.9rem;
+  transition: color 0.3s ease-out;
+  font-family: "Bebas Neue", cursive;
+}
+
+.card-container h2,
+.card-container .card-read-more {
+  transition: transform 0.4s ease-in-out;
+}
+
+.card-container:hover h2,
+.card-container:focus h2,
+.card-container:hover .card-read-more,
+.card-container:focus .card-read-more {
+  color: blue;
+}
